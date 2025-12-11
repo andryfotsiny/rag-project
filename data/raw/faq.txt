@@ -1,0 +1,25 @@
+FAQ - Questions Fréquentes sur le RAG
+
+Q: Quelle est la différence entre RAG et un LLM classique ?
+R: Un LLM classique génère des réponses uniquement à partir de ses connaissances d'entraînement, qui sont figées à une date donnée. Le RAG, lui, récupère d'abord des informations pertinentes depuis une base de documents actualisable, puis génère la réponse en s'appuyant sur ce contexte. Cela permet d'avoir des informations à jour, vérifiables, et de réduire les hallucinations. Le RAG est donc idéal pour des applications d'entreprise nécessitant précision et traçabilité.
+
+Q: Pourquoi utiliser FAISS plutôt qu'une autre solution ?
+R: FAISS (Facebook AI Similarity Search) est une bibliothèque développée par Meta, extrêmement rapide et optimisée pour la recherche de similarité. Elle fonctionne en local sans infrastructure complexe, ce qui la rend idéale pour les prototypes, le développement, et les applications de petite à moyenne échelle. FAISS supporte plusieurs types d'index (Flat, IVF, HNSW) et peut gérer des millions de vecteurs efficacement. Pour la production à grande échelle, des solutions comme Qdrant ou Weaviate offrent plus de fonctionnalités (API REST, filtres, réplication).
+
+Q: Comment choisir la taille des chunks ?
+R: La taille optimale dépend de votre cas d'usage. Typiquement 200-400 tokens est un bon compromis. Des chunks plus petits (100-200 tokens) donnent plus de précision car chaque chunk contient une idée unique, mais risquent de manquer de contexte. Des chunks plus grands (400-600 tokens) offrent plus de contexte mais peuvent diluer la pertinence. Il faut aussi considérer la fenêtre de contexte du LLM : si vous utilisez GPT-3.5 (4K tokens), vous ne pouvez pas mettre 20 chunks de 500 tokens. Testez différentes tailles avec vos données réelles et mesurez la qualité des résultats.
+
+Q: Qu'est-ce que le score de similarité ?
+R: C'est une mesure (généralement entre 0 et 1) de la proximité sémantique entre la requête et un chunk. Avec la similarité cosine (recommandée), un score de 1.0 signifie que les vecteurs sont identiques, 0.0 qu'ils sont orthogonaux. En pratique : score > 0.8 = très pertinent, 0.6-0.8 = pertinent, 0.4-0.6 = moyennement pertinent, < 0.4 = peu pertinent. Le seuil optimal dépend de vos données : des documents techniques très spécifiques auront des scores plus bas qu'un texte général.
+
+Q: Comment améliorer les performances d'un système RAG ?
+R: Plusieurs techniques existent pour optimiser un RAG. Au niveau du chunking : tester différentes tailles, implémenter un overlap intelligent, respecter les limites de paragraphes. Au niveau des embeddings : utiliser un bon modèle adapté à votre domaine, normaliser les vecteurs, implémenter un cache. Pour la recherche : ajuster le top-k et le score minimum, implémenter un reranking avec cross-encoder, utiliser des filtres de métadonnées. Enfin, monitorer continuellement les performances avec des métriques (latence, Recall@K, satisfaction utilisateur) et itérer.
+
+Q: Peut-on utiliser le RAG pour des documents multilingues ?
+R: Oui, absolument. Il faut utiliser des modèles d'embedding multilingues comme multilingual-MiniLM, distiluse-base-multilingual, ou paraphrase-multilingual-mpnet. Ces modèles projettent différentes langues dans le même espace vectoriel, permettant de retrouver un document français avec une query en anglais par exemple. Attention toutefois : la qualité peut être légèrement inférieure aux modèles monolingues spécialisés. Pour des applications critiques, considérez un modèle par langue ou un système de détection de langue en amont.
+
+Q: Quelle est la différence entre FAISS et Qdrant ?
+R: FAISS est une bibliothèque C++ avec bindings Python, très rapide et optimisée, qui fonctionne en local. C'est excellent pour le développement et les petites applications. Qdrant est un serveur de vector store complet écrit en Rust, avec une API REST, des filtres avancés sur métadonnées, la réplication, le clustering, et des fonctionnalités de production comme le monitoring et la scalabilité horizontale. Qdrant est donc mieux adapté pour des applications en production nécessitant haute disponibilité et scalabilité. Le choix dépend de vos besoins : FAISS pour commencer rapidement, Qdrant pour scale en production.
+
+Q: Comment évaluer la qualité d'un système RAG ?
+R: Plusieurs métriques existent. Recall@K mesure si les documents pertinents sont dans les K premiers résultats. MRR (Mean Reciprocal Rank) évalue la position du premier document pertinent. NDCG (Normalized Discounted Cumulative Gain) prend en compte l'ordre et la pertinence relative. Au-delà des métriques, le feedback utilisateur est crucial : demandez si la réponse est utile, les sources pertinentes. Créez un dataset de test avec des queries et les documents attendus, et mesurez régulièrement. L'idéal est de faire du A/B testing entre différentes configurations.

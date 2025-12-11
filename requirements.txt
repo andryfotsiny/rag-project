@@ -1,0 +1,34 @@
+# Core API
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+python-multipart==0.0.18
+
+# Pydantic V2
+pydantic==2.10.3
+pydantic-settings==2.6.1
+
+# Vector Store & Embeddings
+sentence-transformers==3.3.1
+faiss-cpu==1.9.0.post1
+torch==2.5.1
+
+
+pypdf==5.1.0
+markdown==3.7
+tiktoken==0.8.0
+
+
+python-dotenv==1.0.1
+loguru==0.7.3
+
+
+numpy==2.2.0
+aiofiles==24.1.0
+httpx==0.28.1
+
+
+pytest==8.3.4
+pytest-asyncio==0.24.0
+black==24.10.0
+ruff==0.8.4
+mypy==1.13.0

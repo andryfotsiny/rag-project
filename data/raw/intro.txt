@@ -1,0 +1,22 @@
+Le RAG (Retrieval-Augmented Generation) est une technique qui combine la recherche vectorielle et la génération de texte. Cette approche permet d'améliorer significativement la qualité des réponses en s'appuyant sur des documents sources pertinents.
+
+Le système RAG offre de nombreux avantages par rapport aux LLM classiques. Premièrement, il permet d'ancrer les réponses dans des sources vérifiables, ce qui augmente la confiance des utilisateurs. Deuxièmement, il réduit drastiquement les hallucinations en s'appuyant sur des documents réels plutôt que sur la mémoire du modèle.
+
+Les avantages du RAG incluent :
+- Réponses basées sur des sources vérifiables et traçables
+- Réduction significative des hallucinations du modèle
+- Mise à jour facile de la base de connaissances sans réentraînement
+- Traçabilité complète des informations utilisées
+- Adaptabilité à des domaines spécifiques
+- Combinaison de la puissance générative et de la précision documentaire
+
+Le RAG fonctionne en trois étapes principales :
+1. Récupération des documents pertinents via recherche vectorielle dans un vector store
+2. Agrégation du contexte le plus pertinent en fonction des scores de similarité
+3. Génération de la réponse en s'appuyant sur ce contexte enrichi
+
+Un autre avantage majeur est la mise à jour facile de la base de connaissances. Au lieu de réentraîner un modèle complet, il suffit d'ajouter de nouveaux documents au vector store. Cela permet d'avoir des informations toujours à jour sans coût computationnel prohibitif.
+
+La traçabilité est également un point fort : chaque réponse peut être accompagnée de ses sources, permettant aux utilisateurs de vérifier l'information. C'est particulièrement important dans des contextes professionnels, juridiques ou médicaux où la véracité est critique.
+
+Enfin, le RAG permet de combiner la puissance générative des LLM avec la précision d'une recherche documentaire, offrant ainsi le meilleur des deux mondes pour des applications d'entreprise nécessitant des réponses précises et vérifiables.
