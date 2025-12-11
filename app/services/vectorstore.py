@@ -29,7 +29,7 @@ class VectorStoreService:
         try:
             # IndexFlatIP = Inner Product (cosine similarity si normalisé)
             self._index = faiss.IndexFlatIP(self._dimension)
-            logger.info(f"✅ Index FAISS créé (dimension: {self._dimension})")
+            logger.info(f"Index FAISS créé (dimension: {self._dimension})")
         except Exception as e:
             raise VectorStoreError(
                 "Impossible de créer l'index FAISS",
@@ -64,7 +64,7 @@ class VectorStoreService:
             self._index.add(embeddings)
             self._chunks.extend(valid_chunks)
 
-            logger.info(f"✅ {len(valid_chunks)} chunks ajoutés (total: {len(self._chunks)})")
+            logger.info(f"{len(valid_chunks)} chunks ajoutés (total: {len(self._chunks)})")
 
         except Exception as e:
             raise VectorStoreError(

@@ -1,4 +1,3 @@
-
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.api.dependencies import get_embedding_service_dep, get_vectorstore_dep
@@ -10,13 +9,17 @@ from app.services.vectorstore import VectorStoreService
 router = APIRouter()
 
 
-@router.post("/search", response_model=SearchResponse)
+@router.post(
+    "/search",
+    response_model=SearchResponse,
+    summary="Recherche les chunks similaires",
+    description="Recherche dans la base vectorielle les k chunks les plus similaires à la requête selon le score de similarité."
+)
 async def search_vectors(
     request: SearchRequest,
     embedding_service: EmbeddingService = Depends(get_embedding_service_dep),
     vectorstore: VectorStoreService = Depends(get_vectorstore_dep)
 ):
-
     try:
         query_embedding = await embedding_service.embed_text(request.query)
 

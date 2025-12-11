@@ -8,12 +8,16 @@ from app.services.embeddings import EmbeddingService
 router = APIRouter()
 
 
-@router.post("/embed", response_model=EmbedResponse)
+@router.post(
+    "/embed",
+    response_model=EmbedResponse,
+    summary="Transforme un texte en vecteur numérique",
+    description="Génère un embedding (représentation vectorielle) pour un texte donné, utilisé pour la recherche sémantique."
+)
 async def embed_text(
         request: EmbedRequest,
         embedding_service: EmbeddingService = Depends(get_embedding_service_dep)
 ):
-
     try:
         embedding = await embedding_service.embed_text(request.text)
 

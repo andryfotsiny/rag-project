@@ -48,7 +48,7 @@ async def ingest_documents(data_dir: Path | None = None):
     logger.info(f"{len(documents)} documents chargés")
 
     # 2. Découpe en chunks
-    logger.info("🔪 Découpage en chunks...")
+    logger.info(" Découpage en chunks...")
     all_chunks = []
 
     for file_path, content, file_type in documents:
@@ -60,10 +60,10 @@ async def ingest_documents(data_dir: Path | None = None):
             )
             all_chunks.extend(chunks)
         except Exception as e:
-            logger.error(f"❌ Erreur découpage {file_path.name} : {e}")
+            logger.error(f" Erreur découpage {file_path.name} : {e}")
 
     if not all_chunks:
-        logger.error("❌ Aucun chunk créé")
+        logger.error("Aucun chunk créé")
         return
 
     logger.info(f"{len(all_chunks)} chunks créés")
@@ -82,7 +82,7 @@ async def ingest_documents(data_dir: Path | None = None):
         logger.info(f"{len(embeddings)} embeddings générés")
 
     except Exception as e:
-        logger.error(f"❌ Erreur génération embeddings : {e}")
+        logger.error(f"Erreur génération embeddings : {e}")
         return
 
     # 4. Indexation dans FAISS
@@ -95,7 +95,7 @@ async def ingest_documents(data_dir: Path | None = None):
         logger.info(f"{len(all_chunks)} chunks indexés")
 
     except Exception as e:
-        logger.error(f"❌ Erreur indexation : {e}")
+        logger.error(f" Erreur indexation : {e}")
         return
 
     # 5. Sauvegarde
@@ -106,15 +106,15 @@ async def ingest_documents(data_dir: Path | None = None):
         logger.info("Index sauvegardé")
 
     except Exception as e:
-        logger.error(f"❌ Erreur sauvegarde : {e}")
+        logger.error(f"Erreur sauvegarde : {e}")
         return
 
     # Résumé
     logger.info("=" * 60)
     logger.info("INGESTION TERMINÉE AVEC SUCCÈS")
-    logger.info(f"📊 Documents : {len(documents)}")
-    logger.info(f"📊 Chunks : {len(all_chunks)}")
-    logger.info(f"📊 Index : {settings.faiss_index_full_path}")
+    logger.info(f"Documents : {len(documents)}")
+    logger.info(f"Chunks : {len(all_chunks)}")
+    logger.info(f" Index : {settings.faiss_index_full_path}")
     logger.info("=" * 60)
 
 

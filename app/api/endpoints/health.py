@@ -8,9 +8,13 @@ from app.services.vectorstore import VectorStoreService
 router = APIRouter()
 
 
-@router.get("/health", response_model=HealthResponse)
+@router.get(
+    "/health",
+    response_model=HealthResponse,
+    summary="Vérifie l'état du système",
+    description="Retourne l'état de santé de l'API, la version, et le nombre de documents indexés dans la base vectorielle."
+)
 def health_check(vectorstore: VectorStoreService = Depends(get_vectorstore_dep)):
-
     return HealthResponse(
         status="healthy",
         version=settings.app_version,

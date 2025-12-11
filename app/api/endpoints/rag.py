@@ -1,4 +1,3 @@
-
 from fastapi import APIRouter, Depends, HTTPException
 
 from app.api.dependencies import get_rag_pipeline_dep
@@ -9,12 +8,16 @@ from app.services.rag_pipeline import RAGPipeline
 router = APIRouter()
 
 
-@router.post("/rag", response_model=RAGResponse)
+@router.post(
+    "/rag",
+    response_model=RAGResponse,
+    summary="Pipeline RAG complet",
+    description="Recherche les chunks pertinents, filtre par score, puis agrège le contexte final avec sources et métadonnées."
+)
 async def rag_query(
     request: RAGRequest,
     pipeline: RAGPipeline = Depends(get_rag_pipeline_dep)
 ):
-
     try:
         result = await pipeline.process_query(
             query=request.query,
