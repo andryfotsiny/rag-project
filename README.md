@@ -2,14 +2,14 @@
 
 API RAG (Retrieval-Augmented Generation) complète avec FAISS et sentence-transformers.
 
+(instance déjà déployée)
 **Démo en ligne** : http://62.72.42.173:8007/docs
-
 
 ---
 
 ## Installation
 
-### Méthode 1 : Docker (Recommandé)
+### Méthode 1 : Docker 
 
 ```bash
 # Clone le projet
