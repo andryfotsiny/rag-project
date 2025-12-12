@@ -318,25 +318,7 @@ API_PORT=8000
 
 ---
 
-## Améliorations pour un Produit Réel
 
-### Court Terme (0-3 mois)
-1. **Reranking** : Implémenter un cross-encoder après la recherche initiale pour améliorer la pertinence
-2. **Filtrage métadonnées** : Permettre de filtrer par type de document, date, auteur
-3. **Cache intelligent** : Mettre en cache les embeddings des queries fréquentes
-4. **Tests automatisés** : Suite de tests avec métriques (Recall@K, MRR)
-
-### Moyen Terme (3-6 mois)
-1. **Migration Qdrant** : Pour scalabilité et fonctionnalités avancées (API REST, réplication)
-2. **Query expansion** : Enrichir les requêtes avec synonymes et reformulations
-3. **Chunking sémantique** : Découper par thèmes via embeddings plutôt que par taille fixe
-4. **Monitoring** : Prometheus/Grafana pour latences, scores, satisfaction
-
-### Long Terme (6-12 mois)
-1. **Hypothetical Document Embeddings (HyDE)** : Générer un doc hypothétique, l'embedder, puis chercher
-2. **Multi-modal** : Support images, tableaux, graphiques
-3. **Feedback loop** : Apprendre des retours utilisateurs pour améliorer le ranking
-4. **A/B Testing** : Tester différentes stratégies de chunking/scoring en production
 
 ### Métriques de Succès
 - **Latence P95** < 500ms
